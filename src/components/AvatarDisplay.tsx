@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -64,23 +64,33 @@ function AnimatedRing() {
   )
 }
 
+function Scene() {
+  return (
+    <>
+      <PerspectiveCamera makeDefault position={[0, 0, 3]} />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        autoRotate
+        autoRotateSpeed={2}
+      />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
+      <pointLight position={[-10, -10, 5]} intensity={0.8} color="#06b6d4" />
+      <AvatarModel />
+      <AnimatedRing />
+    </>
+  )
+}
+
 export function AvatarDisplay() {
   return (
     <div className="avatar-glow w-full h-full">
-      <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 0, 3]} />
-        <OrbitControls 
-          enableZoom={false}
-          enablePan={false}
-          autoRotate
-          autoRotateSpeed={2}
-        />
-        <ambientLight intensity={0.6} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
-        <pointLight position={[-10, -10, 5]} intensity={0.8} color="#06b6d4" />
-        <AvatarModel />
-        <AnimatedRing />
-      </Canvas>
+      <Suspense fallback={<div className="w-full h-full bg-gradient-to-b from-nexus-purple to-nexus-blue flex items-center justify-center text-white font-semibold">Loading Avatar...</div>}>
+        <Canvas>
+          <Scene />
+        </Canvas>
+      </Suspense>
     </div>
   )
 }

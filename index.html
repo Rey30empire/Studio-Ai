@@ -5,9 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NEXUS AI - Agentic Studio</title>
+    <script>
+      window.addEventListener('error', (event) => {
+        console.error('Global error:', event.error)
+      })
+      window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled rejection:', event.reason)
+      })
+    </script>
   </head>
-  <body class="dark">
-    <div id="root"></div>
+  <body class="dark" style="margin: 0; padding: 0; background: #0a0e27;">
+    <div id="root" style="width: 100vw; height: 100vh;"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

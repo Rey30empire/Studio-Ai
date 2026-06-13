@@ -3,8 +3,9 @@ import { SidebarLeft } from './components/SidebarLeft'
 import { SidebarRight } from './components/SidebarRight'
 import { CenterPanel } from './components/CenterPanel'
 import { BottomPanel } from './components/BottomPanel'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
-function App() {
+function AppContent() {
   return (
     <div className="w-screen h-screen bg-gradient-to-b from-nexus-dark via-nexus-darker to-nexus-dark text-white overflow-hidden flex flex-col">
       {/* Main layout: 3 column with left/right sidebars and center */}
@@ -15,8 +16,8 @@ function App() {
         </div>
 
         {/* Center: Avatar and floating panels */}
-        <div className="flex-1 min-w-0">
-          <Suspense fallback={<div className="w-full h-full bg-nexus-darker flex items-center justify-center">Loading...</div>}>
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <Suspense fallback={<div className="w-full h-full bg-gradient-to-b from-nexus-dark to-nexus-darker flex items-center justify-center text-white font-semibold">Loading NEXUS...</div>}>
             <CenterPanel />
           </Suspense>
         </div>
@@ -32,6 +33,14 @@ function App() {
         <BottomPanel />
       </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ErrorBoundary>
+      <AppContent />
+    </ErrorBoundary>
   )
 }
 

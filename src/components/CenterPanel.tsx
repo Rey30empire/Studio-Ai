@@ -1,11 +1,37 @@
+import { Suspense } from 'react'
 import { AvatarDisplay } from './AvatarDisplay'
 import { FloatingPanels } from './FloatingPanels'
+
+function CenterContent() {
+  return (
+    <>
+      {/* Avatar area */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-2/3 h-4/5 max-w-2xl">
+          <Suspense fallback={
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="text-center space-y-4">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-nexus-purple to-nexus-blue mx-auto opacity-50 animate-pulse"></div>
+                <p className="text-nexus-purple font-semibold">Loading Nova...</p>
+              </div>
+            </div>
+          }>
+            <AvatarDisplay />
+          </Suspense>
+        </div>
+      </div>
+
+      {/* Floating panels */}
+      <FloatingPanels />
+    </>
+  )
+}
 
 export function CenterPanel() {
   return (
     <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-nexus-dark via-nexus-dark to-nexus-darker">
       {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -24,15 +50,8 @@ export function CenterPanel() {
       <div className="absolute top-20 left-10 w-96 h-96 bg-nexus-purple rounded-full blur-3xl opacity-10 pointer-events-none"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-nexus-blue rounded-full blur-3xl opacity-10 pointer-events-none"></div>
 
-      {/* Avatar area */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-2/3 h-4/5 max-w-2xl">
-          <AvatarDisplay />
-        </div>
-      </div>
-
-      {/* Floating panels */}
-      <FloatingPanels />
+      {/* Content */}
+      <CenterContent />
     </div>
   )
 }

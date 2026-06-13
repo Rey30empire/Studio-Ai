@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-nexus-dark text-white font-sans;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-nexus-darker;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-nexus-purple rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-nexus-purple-bright;
+}
+
+.glass-panel {
+  @apply bg-glass-lg border border-glass rounded-lg;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.glow-text-purple {
+  @apply text-nexus-neon-purple drop-shadow-lg;
+  text-shadow: 0 0 10px rgba(192, 132, 252, 0.6);
+}
+
+.glow-text-blue {
+  @apply text-nexus-neon-blue;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.avatar-glow {
+  filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4)) drop-shadow(0 0 60px rgba(6, 182, 212, 0.3));
+}
+
+.panel-glow {
+  box-shadow: 
+    inset 0 0 20px rgba(168, 85, 247, 0.1),
+    0 0 20px rgba(168, 85, 247, 0.2),
+    0 0 40px rgba(6, 182, 212, 0.15);
+}
+
+.neon-border {
+  border-image: linear-gradient(135deg, #a855f7 0%, #06b6d4 100%) 1;
+}
+
+.gradient-text-purple-blue {
+  @apply bg-gradient-to-r from-nexus-neon-purple to-nexus-neon-blue bg-clip-text text-transparent;
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glass-border {
+  @apply border border-glass;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  backdrop-filter: blur(10px);
+}
